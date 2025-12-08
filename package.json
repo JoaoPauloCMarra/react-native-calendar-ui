@@ -29,7 +29,8 @@
     "test": "bun run ci:test",
     "validate": "bun run ci:local",
     "clean": "rimraf ./node_modules ./packages/*/node_modules ./example/node_modules",
-    "fresh-install": "bun run clean && bun install"
+    "fresh-install": "bun run clean && bun install",
+    "publish": "cd ./packages/react-native-calendar-ui && npm publish"
   },
   "overrides": {
     "react": "19.1.0",

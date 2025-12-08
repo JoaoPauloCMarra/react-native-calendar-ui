@@ -1,4 +1,4 @@
-# react-native-calendar-ui v0.1.0
+# react-native-calendar-ui
 
 [![npm version](https://img.shields.io/npm/v/react-native-calendar-ui.svg)](https://www.npmjs.com/package/react-native-calendar-ui)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)

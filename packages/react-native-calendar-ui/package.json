@@ -1,6 +1,6 @@
 {
   "name": "react-native-calendar-ui",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "⚡ High-performance headless calendar UI library for React Native - Powerful hooks + beautiful components for iOS, Android & Web",
   "main": "src/index.ts",
   "module": "src/index.ts",
@@ -61,7 +61,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/JoaoPauloCMarra/react-native-nitro-calendar-ui.git"
+    "url": "git+https://github.com/JoaoPauloCMarra/react-native-nitro-calendar-ui.git"
   },
   "homepage": "https://github.com/JoaoPauloCMarra/react-native-nitro-calendar-ui#readme",
   "bugs": {
