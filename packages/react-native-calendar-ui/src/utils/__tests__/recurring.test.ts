@@ -45,6 +45,30 @@ describe("Recurring Date Utilities", () => {
       });
     });
 
+    it("should filter by days of month", () => {
+      const options: RecurringDateOptions = {
+        start: new Date(2024, 0, 1),
+        end: new Date(2024, 2, 31),
+        rule: { pattern: "daily", interval: 1, daysOfMonth: [1, 15, 30] },
+      };
+      const dates = getRecurringDates(options);
+      dates.forEach((date) => {
+        expect([1, 15, 30]).toContain(date.getDate());
+      });
+    });
+
+    it("should filter by months of year", () => {
+      const options: RecurringDateOptions = {
+        start: new Date(2024, 0, 1),
+        end: new Date(2024, 11, 31),
+        rule: { pattern: "monthly", interval: 1, monthsOfYear: [0, 5, 11] },
+      };
+      const dates = getRecurringDates(options);
+      dates.forEach((date) => {
+        expect([0, 5, 11]).toContain(date.getMonth());
+      });
+    });
+
     it("should respect count limit", () => {
       const options: RecurringDateOptions = {
         start: new Date(2024, 0, 1),
@@ -61,6 +85,36 @@ describe("Recurring Date Utilities", () => {
       };
       const dates = getRecurringDates(options);
       expect(dates.length).toBeLessThanOrEqual(5);
+    });
+
+    it("should handle monthly recurring dates", () => {
+      const options: RecurringDateOptions = {
+        start: new Date(2024, 0, 1),
+        end: new Date(2024, 11, 31),
+        rule: { pattern: "monthly", interval: 1 },
+      };
+      const dates = getRecurringDates(options);
+      expect(dates).toHaveLength(12);
+    });
+
+    it("should handle yearly recurring dates", () => {
+      const options: RecurringDateOptions = {
+        start: new Date(2024, 0, 1),
+        end: new Date(2026, 11, 31),
+        rule: { pattern: "yearly", interval: 1 },
+      };
+      const dates = getRecurringDates(options);
+      expect(dates).toHaveLength(3);
+    });
+
+    it("should handle unknown pattern as daily", () => {
+      const options: RecurringDateOptions = {
+        start: new Date(2024, 0, 1),
+        end: new Date(2024, 0, 5),
+        rule: { pattern: "unknown" as any, interval: 1 },
+      };
+      const dates = getRecurringDates(options);
+      expect(dates).toHaveLength(5);
     });
   });
 

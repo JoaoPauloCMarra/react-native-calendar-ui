@@ -22,6 +22,18 @@ describe("Preset Utilities", () => {
       expect(result?.start.toDateString()).toBe(result?.end.toDateString());
     });
 
+    it("should return correct range for yesterday", () => {
+      const result = getPresetValue("yesterday");
+      expect(result).not.toBeNull();
+
+      const today = new Date();
+      const yesterday = new Date();
+      yesterday.setDate(yesterday.getDate() - 1);
+
+      expect(result?.start.toDateString()).toBe(yesterday.toDateString());
+      expect(result?.end.toDateString()).toBe(yesterday.toDateString());
+    });
+
     it("should return correct range for last7days", () => {
       const result = getPresetValue("last7days");
       expect(result).not.toBeNull();
@@ -30,6 +42,56 @@ describe("Preset Utilities", () => {
           (1000 * 60 * 60 * 24)
       );
       expect(daysDiff).toBe(6);
+    });
+
+    it("should return correct range for last30days", () => {
+      const result = getPresetValue("last30days");
+      expect(result).not.toBeNull();
+      const daysDiff = Math.floor(
+        (result!.end.getTime() - result!.start.getTime()) /
+          (1000 * 60 * 60 * 24)
+      );
+      expect(daysDiff).toBe(29);
+    });
+
+    it("should return correct range for thisWeek", () => {
+      const result = getPresetValue("thisWeek");
+      expect(result).not.toBeNull();
+
+      // Start should be Sunday (day 0)
+      expect(result?.start.getDay()).toBe(0);
+
+      // End should be Saturday (day 6)
+      expect(result?.end.getDay()).toBe(6);
+
+      // Should be 7 days total
+      const daysDiff = Math.floor(
+        (result!.end.getTime() - result!.start.getTime()) /
+          (1000 * 60 * 60 * 24)
+      );
+      expect(daysDiff).toBe(6);
+    });
+
+    it("should return correct range for lastWeek", () => {
+      const result = getPresetValue("lastWeek");
+      expect(result).not.toBeNull();
+
+      // Start should be Sunday (day 0)
+      expect(result?.start.getDay()).toBe(0);
+
+      // End should be Saturday (day 6)
+      expect(result?.end.getDay()).toBe(6);
+
+      // Should be 7 days total
+      const daysDiff = Math.floor(
+        (result!.end.getTime() - result!.start.getTime()) /
+          (1000 * 60 * 60 * 24)
+      );
+      expect(daysDiff).toBe(6);
+
+      // Last week should be before this week
+      const thisWeek = getPresetValue("thisWeek");
+      expect(result!.end.getTime()).toBeLessThan(thisWeek!.start.getTime());
     });
 
     it("should return null for invalid preset", () => {
@@ -42,6 +104,36 @@ describe("Preset Utilities", () => {
       expect(result).not.toBeNull();
       expect(result?.start.getDate()).toBe(1);
       expect(result?.start.getMonth()).toBe(result?.end.getMonth());
+    });
+
+    it("should return correct range for lastMonth", () => {
+      const result = getPresetValue("lastMonth");
+      expect(result).not.toBeNull();
+
+      const today = new Date();
+      const expectedMonth = today.getMonth() - 1;
+      const expectedYear =
+        expectedMonth < 0 ? today.getFullYear() - 1 : today.getFullYear();
+      const normalizedMonth = expectedMonth < 0 ? 11 : expectedMonth;
+
+      expect(result?.start.getDate()).toBe(1);
+      expect(result?.start.getMonth()).toBe(normalizedMonth);
+      expect(result?.start.getFullYear()).toBe(expectedYear);
+      expect(result?.end.getMonth()).toBe(normalizedMonth);
+    });
+
+    it("should return correct range for thisYear", () => {
+      const result = getPresetValue("thisYear");
+      expect(result).not.toBeNull();
+
+      const today = new Date();
+      expect(result?.start.getMonth()).toBe(0);
+      expect(result?.start.getDate()).toBe(1);
+      expect(result?.start.getFullYear()).toBe(today.getFullYear());
+
+      expect(result?.end.getMonth()).toBe(11);
+      expect(result?.end.getDate()).toBe(31);
+      expect(result?.end.getFullYear()).toBe(today.getFullYear());
     });
   });
 });

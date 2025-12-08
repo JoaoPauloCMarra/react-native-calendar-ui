@@ -356,5 +356,54 @@ describe("useCalendarMulti Hook", () => {
 
       expect(onMonthChange).toHaveBeenCalledWith(2024, 1);
     });
+
+    it("should call onMonthChange when navigating to previous year", () => {
+      const onMonthChange = jest.fn();
+      const { result } = renderHook(() =>
+        useCalendarMulti({
+          initialYear: 2024,
+          initialMonth: 0,
+          onMonthChange,
+        })
+      );
+
+      act(() => {
+        result.current.previousMonth();
+      });
+
+      expect(onMonthChange).toHaveBeenCalledWith(2023, 11);
+    });
+
+    it("should call onMonthChange when using goToMonth", () => {
+      const onMonthChange = jest.fn();
+      const { result } = renderHook(() => useCalendarMulti({ onMonthChange }));
+
+      act(() => {
+        result.current.goToMonth(2025, 6);
+      });
+
+      expect(onMonthChange).toHaveBeenCalledWith(2025, 6);
+    });
+
+    it("should call onMonthChange when using goToToday", () => {
+      const now = new Date();
+      const onMonthChange = jest.fn();
+      const { result } = renderHook(() =>
+        useCalendarMulti({
+          initialYear: 2020,
+          initialMonth: 0,
+          onMonthChange,
+        })
+      );
+
+      act(() => {
+        result.current.goToToday();
+      });
+
+      expect(onMonthChange).toHaveBeenCalledWith(
+        now.getFullYear(),
+        now.getMonth()
+      );
+    });
   });
 });

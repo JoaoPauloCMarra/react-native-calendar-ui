@@ -117,4 +117,17 @@ describe("useCalendarDateTime", () => {
 
     expect(onDateTimeChange).toHaveBeenCalled();
   });
+
+  it("should not call onDateTimeChange when selecting time without date", () => {
+    const onDateTimeChange = jest.fn();
+    const { result } = renderHook(() =>
+      useCalendarDateTime({ onDateTimeChange })
+    );
+
+    act(() => {
+      result.current.selectTime(14, 30, 0);
+    });
+
+    expect(onDateTimeChange).not.toHaveBeenCalled();
+  });
 });

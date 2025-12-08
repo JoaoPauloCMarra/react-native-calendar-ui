@@ -26,7 +26,6 @@ export interface CalendarGridProps {
   /** Show day labels (Sun, Mon, etc.) */
   showDayLabels?: boolean;
   /** Custom day label style */
-  /** Custom day label style */
   dayLabelStyle?: any;
   /** Override weekday labels */
   dayLabels?: string[];

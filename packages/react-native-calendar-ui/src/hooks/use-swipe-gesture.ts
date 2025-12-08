@@ -1,4 +1,4 @@
-import { useCallback } from "react";
+import { useCallback, useRef } from "react";
 import { GestureResponderEvent } from "react-native";
 
 export interface UseSwipeGestureOptions {
@@ -18,8 +18,6 @@ interface TouchPosition {
   y: number;
 }
 
-let touchStart: TouchPosition | null = null;
-
 export function useSwipeGesture(
   options: UseSwipeGestureOptions = {}
 ): UseSwipeGestureReturn {
@@ -30,8 +28,10 @@ export function useSwipeGesture(
     maxVerticalMovement = 100,
   } = options;
 
+  const touchStartRef = useRef<TouchPosition | null>(null);
+
   const onTouchStart = useCallback((event: GestureResponderEvent) => {
-    touchStart = {
+    touchStartRef.current = {
       x: event.nativeEvent.pageX,
       y: event.nativeEvent.pageY,
     };
@@ -39,15 +39,15 @@ export function useSwipeGesture(
 
   const onTouchEnd = useCallback(
     (event: GestureResponderEvent) => {
-      if (!touchStart) return;
+      if (!touchStartRef.current) return;
 
       const touchEnd = {
         x: event.nativeEvent.pageX,
         y: event.nativeEvent.pageY,
       };
 
-      const deltaX = touchEnd.x - touchStart.x;
-      const deltaY = Math.abs(touchEnd.y - touchStart.y);
+      const deltaX = touchEnd.x - touchStartRef.current.x;
+      const deltaY = Math.abs(touchEnd.y - touchStartRef.current.y);
 
       if (
         Math.abs(deltaX) >= minSwipeDistance &&
@@ -60,7 +60,7 @@ export function useSwipeGesture(
         }
       }
 
-      touchStart = null;
+      touchStartRef.current = null;
     },
     [onSwipeLeft, onSwipeRight, minSwipeDistance, maxVerticalMovement]
   );

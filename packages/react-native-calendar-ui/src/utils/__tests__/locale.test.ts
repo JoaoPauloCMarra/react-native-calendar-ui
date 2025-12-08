@@ -3,6 +3,7 @@ import {
   getLocalizedMonthName,
   getLocalizedDayName,
   getISOWeekNumber,
+  adjustDaysForWeekStart,
 } from "../locale";
 
 describe("Locale Utilities", () => {
@@ -61,6 +62,47 @@ describe("Locale Utilities", () => {
       const weekNumber = getISOWeekNumber(new Date(2024, 0, 15));
       expect(weekNumber).toBeGreaterThan(0);
       expect(weekNumber).toBeLessThanOrEqual(53);
+    });
+
+    it("should handle year boundaries correctly", () => {
+      const weekNumber = getISOWeekNumber(new Date(2024, 0, 1));
+      expect(weekNumber).toBeGreaterThan(0);
+    });
+  });
+
+  describe("adjustDaysForWeekStart", () => {
+    it("should return days unchanged when firstDayOfWeek is 0", () => {
+      const days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+      const adjusted = adjustDaysForWeekStart(days, 0);
+      expect(adjusted).toEqual(days);
+    });
+
+    it("should reorder days when firstDayOfWeek is 1 (Monday)", () => {
+      const days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+      const adjusted = adjustDaysForWeekStart(days, 1);
+      expect(adjusted).toEqual([
+        "Mon",
+        "Tue",
+        "Wed",
+        "Thu",
+        "Fri",
+        "Sat",
+        "Sun",
+      ]);
+    });
+
+    it("should reorder days when firstDayOfWeek is 6 (Saturday)", () => {
+      const days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+      const adjusted = adjustDaysForWeekStart(days, 6);
+      expect(adjusted).toEqual([
+        "Sat",
+        "Sun",
+        "Mon",
+        "Tue",
+        "Wed",
+        "Thu",
+        "Fri",
+      ]);
     });
   });
 });

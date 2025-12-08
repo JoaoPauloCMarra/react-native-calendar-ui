@@ -6,7 +6,6 @@ export interface TapProps {
   onPress?: () => void;
   children: ReactNode;
   disabled?: boolean;
-  activeOpacity?: number;
 }
 
 export function Tap({ onPress, children, disabled = false }: TapProps) {

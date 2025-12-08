@@ -3,7 +3,7 @@ export interface CalendarEvent {
   date: Date;
   color?: string;
   label?: string;
-  metadata?: any;
+  metadata?: Record<string, unknown>;
 }
 
 export interface EventMarkerStyle {

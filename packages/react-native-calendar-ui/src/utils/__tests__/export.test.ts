@@ -34,6 +34,18 @@ describe("Export Utilities", () => {
       expect(ics).toContain("Team meeting");
       expect(ics).toContain("Office");
     });
+
+    it("should generate UID for events without ID", () => {
+      const eventsWithoutId: CalendarEvent[] = [
+        {
+          date: new Date(2024, 0, 15),
+          label: "Event without ID",
+        },
+      ];
+      const ics = exportToICS(eventsWithoutId);
+      expect(ics).toContain("UID:");
+      expect(ics).toContain("@react-native-calendar-ui");
+    });
   });
 
   describe("exportToJSON", () => {

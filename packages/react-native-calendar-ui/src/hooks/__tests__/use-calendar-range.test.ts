@@ -309,4 +309,89 @@ describe("useCalendarRange Hook", () => {
       expect(result.current.isToday(pastDate)).toBe(false);
     });
   });
+
+  describe("Callbacks", () => {
+    it("should call onMonthChange when navigating to previous year", () => {
+      const onMonthChange = jest.fn();
+      const { result } = renderHook(() =>
+        useCalendarRange({
+          initialYear: 2024,
+          initialMonth: 0,
+          onMonthChange,
+        })
+      );
+
+      act(() => {
+        result.current.previousMonth();
+      });
+
+      expect(onMonthChange).toHaveBeenCalledWith(2023, 11);
+    });
+
+    it("should call onMonthChange when navigating to next year", () => {
+      const onMonthChange = jest.fn();
+      const { result } = renderHook(() =>
+        useCalendarRange({
+          initialYear: 2024,
+          initialMonth: 11,
+          onMonthChange,
+        })
+      );
+
+      act(() => {
+        result.current.nextMonth();
+      });
+
+      expect(onMonthChange).toHaveBeenCalledWith(2025, 0);
+    });
+
+    it("should call onMonthChange when using goToMonth", () => {
+      const onMonthChange = jest.fn();
+      const { result } = renderHook(() => useCalendarRange({ onMonthChange }));
+
+      act(() => {
+        result.current.goToMonth(2025, 6);
+      });
+
+      expect(onMonthChange).toHaveBeenCalledWith(2025, 6);
+    });
+
+    it("should call onMonthChange when using goToToday", () => {
+      const now = new Date();
+      const onMonthChange = jest.fn();
+      const { result } = renderHook(() =>
+        useCalendarRange({
+          initialYear: 2020,
+          initialMonth: 0,
+          onMonthChange,
+        })
+      );
+
+      act(() => {
+        result.current.goToToday();
+      });
+
+      expect(onMonthChange).toHaveBeenCalledWith(
+        now.getFullYear(),
+        now.getMonth()
+      );
+    });
+
+    it("should call onRangeSelect when using setRange", () => {
+      const onRangeSelect = jest.fn();
+      const { result } = renderHook(() => useCalendarRange({ onRangeSelect }));
+
+      const range = {
+        start: new Date(2024, 0, 10),
+        end: new Date(2024, 0, 15),
+      };
+
+      act(() => {
+        result.current.setRange(range);
+      });
+
+      expect(onRangeSelect).toHaveBeenCalledWith(range);
+      expect(result.current.selectedRange).toEqual(range);
+    });
+  });
 });
