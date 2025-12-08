@@ -1,6 +1,6 @@
 {
   "name": "react-native-calendar-ui",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "⚡ High-performance headless calendar UI library for React Native - Powerful hooks + beautiful components for iOS, Android & Web",
   "main": "src/index.ts",
   "module": "src/index.ts",
