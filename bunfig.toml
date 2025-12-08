@@ -1,0 +1,13 @@
+[install]
+peer = true
+production = false
+linker = "hoisted"
+
+[install.cache]
+disable = false
+
+[test]
+coverage = true
+
+[run]
+shell = "bun"

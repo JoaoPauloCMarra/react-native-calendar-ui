@@ -1,0 +1,41 @@
+{
+  "name": "react-native-calendar-ui-monorepo",
+  "private": true,
+  "keywords": [
+    "react-native",
+    "calendar",
+    "calendar-ui",
+    "headless",
+    "expo",
+    "performance",
+    "ios",
+    "android",
+    "web",
+    "date-picker",
+    "hooks"
+  ],
+  "workspaces": [
+    "packages/*",
+    "example"
+  ],
+  "scripts": {
+    "package": "bun --cwd ./packages/react-native-calendar-ui",
+    "example": "bun --cwd ./example",
+    "ci:lint": "bun run --filter react-native-calendar-ui ci:lint",
+    "ci:test": "bun run --filter react-native-calendar-ui ci:test",
+    "ci:build": "bun run --filter react-native-calendar-ui ci:build",
+    "update": "bun run ./scripts/update.ts",
+    "ci:local": "bun run --filter react-native-calendar-ui ci:local",
+    "test": "bun run ci:test",
+    "validate": "bun run ci:local",
+    "clean": "rimraf ./node_modules ./packages/*/node_modules ./example/node_modules",
+    "fresh-install": "bun run clean && bun install"
+  },
+  "overrides": {
+    "react": "19.1.0",
+    "react-native": "0.81.5"
+  },
+  "devDependencies": {
+    "@types/bun": "^1.3.3"
+  }
+}

@@ -1,0 +1,103 @@
+{
+  "name": "react-native-calendar-ui",
+  "version": "0.1.0",
+  "description": "⚡ High-performance headless calendar UI library for React Native - Powerful hooks + beautiful components for iOS, Android & Web",
+  "main": "src/index.ts",
+  "module": "src/index.ts",
+  "types": "lib/typescript/src/index.d.ts",
+  "react-native": "src/index.ts",
+  "browser": "src/index.ts",
+  "source": "src/index.ts",
+  "exports": {
+    ".": {
+      "react-native": "./src/index.ts",
+      "browser": "./src/index.ts",
+      "node": "./src/index.ts",
+      "default": "./src/index.ts"
+    }
+  },
+  "files": [
+    "src",
+    "lib",
+    "LICENSE",
+    "README.md"
+  ],
+  "scripts": {
+    "build:types": "tsc -p tsconfig.json --emitDeclarationOnly",
+    "build": "bun run build:types",
+    "typecheck": "tsc --noEmit",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage",
+    "clean": "rimraf ./lib",
+    "prepack": "bun run build:types && bun run typecheck && rimraf lib/tsconfig.tsbuildinfo",
+    "ci:lint": "bun run typecheck",
+    "ci:test": "bun run test:coverage",
+    "ci:build": "bun run build:types && bun pm pack --dry-run",
+    "ci:local": "bun run ci:lint && bun run ci:test && bun run ci:build",
+    "validate": "bun run ci:local",
+    "update:deps": "bunx npm-check-updates -u && bun install"
+  },
+  "keywords": [
+    "react-native",
+    "calendar",
+    "calendar-component",
+    "date-picker",
+    "headless-calendar",
+    "performance",
+    "typescript",
+    "ios",
+    "android",
+    "web",
+    "expo",
+    "cross-platform",
+    "ui-library",
+    "date-utilities",
+    "calendar-grid",
+    "calendar-ui",
+    "fast-calendar",
+    "hooks",
+    "react-hooks"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/JoaoPauloCMarra/react-native-nitro-calendar-ui.git"
+  },
+  "homepage": "https://github.com/JoaoPauloCMarra/react-native-nitro-calendar-ui#readme",
+  "bugs": {
+    "url": "https://github.com/JoaoPauloCMarra/react-native-nitro-calendar-ui/issues"
+  },
+  "author": "Joao Paulo C Marra",
+  "license": "MIT",
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "peerDependencies": {
+    "react": ">=18.0.0",
+    "react-native": ">=0.74.0",
+    "react-native-gesture-handler": ">=2.0.0"
+  },
+  "peerDependenciesMeta": {
+    "react-native-gesture-handler": {
+      "optional": true
+    }
+  },
+  "devDependencies": {
+    "@testing-library/react": "^16.3.0",
+    "@testing-library/react-hooks": "^8.0.1",
+    "@types/jest": "^30.0.0",
+    "@types/react": "^19.2.7",
+    "@types/react-native": "^0.73.0",
+    "jest": "^30.2.0",
+    "jest-environment-jsdom": "^30.2.0",
+    "react": "19.1.0",
+    "react-native": "0.81.5",
+    "rimraf": "^6.1.2",
+    "ts-jest": "^29.4.6",
+    "typescript": "^5.9.3"
+  },
+  "overrides": {
+    "react": "19.1.0",
+    "react-native": "0.81.5"
+  }
+}
