@@ -1,4 +1,5 @@
 import { getPresetValue, DATE_PRESETS } from "../presets";
+import { getDaysBetween } from "../date-range";
 
 describe("Preset Utilities", () => {
   describe("DATE_PRESETS", () => {
@@ -37,20 +38,14 @@ describe("Preset Utilities", () => {
     it("should return correct range for last7days", () => {
       const result = getPresetValue("last7days");
       expect(result).not.toBeNull();
-      const daysDiff = Math.floor(
-        (result!.end.getTime() - result!.start.getTime()) /
-          (1000 * 60 * 60 * 24)
-      );
+      const daysDiff = getDaysBetween(result!.start, result!.end);
       expect(daysDiff).toBe(6);
     });
 
     it("should return correct range for last30days", () => {
       const result = getPresetValue("last30days");
       expect(result).not.toBeNull();
-      const daysDiff = Math.floor(
-        (result!.end.getTime() - result!.start.getTime()) /
-          (1000 * 60 * 60 * 24)
-      );
+      const daysDiff = getDaysBetween(result!.start, result!.end);
       expect(daysDiff).toBe(29);
     });
 
@@ -65,10 +60,7 @@ describe("Preset Utilities", () => {
       expect(result?.end.getDay()).toBe(6);
 
       // Should be 7 days total
-      const daysDiff = Math.floor(
-        (result!.end.getTime() - result!.start.getTime()) /
-          (1000 * 60 * 60 * 24)
-      );
+      const daysDiff = getDaysBetween(result!.start, result!.end);
       expect(daysDiff).toBe(6);
     });
 
@@ -83,10 +75,7 @@ describe("Preset Utilities", () => {
       expect(result?.end.getDay()).toBe(6);
 
       // Should be 7 days total
-      const daysDiff = Math.floor(
-        (result!.end.getTime() - result!.start.getTime()) /
-          (1000 * 60 * 60 * 24)
-      );
+      const daysDiff = getDaysBetween(result!.start, result!.end);
       expect(daysDiff).toBe(6);
 
       // Last week should be before this week

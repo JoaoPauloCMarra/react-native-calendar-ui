@@ -251,7 +251,7 @@ import type {
 
 ## Examples
 
-See the [example app](https://github.com/JoaoPauloCMarra/react-native-nitro-calendar-ui/tree/main/example) for complete usage examples including:
+See the [example app](https://github.com/JoaoPauloCMarra/react-native-calendar-ui/tree/main/example) for complete usage examples including:
 
 - Basic calendar
 - Date range picker
@@ -264,7 +264,7 @@ See the [example app](https://github.com/JoaoPauloCMarra/react-native-nitro-cale
 
 ## Contributing
 
-Contributions welcome! Please see our [GitHub repository](https://github.com/JoaoPauloCMarra/react-native-nitro-calendar-ui).
+Contributions welcome! Please see our [GitHub repository](https://github.com/JoaoPauloCMarra/react-native-calendar-ui).
 
 ## License
 
@@ -273,8 +273,8 @@ MIT © [Joao Paulo C Marra](https://github.com/JoaoPauloCMarra)
 ## Links
 
 - [npm](https://www.npmjs.com/package/react-native-calendar-ui)
-- [GitHub](https://github.com/JoaoPauloCMarra/react-native-nitro-calendar-ui)
-- [Issues](https://github.com/JoaoPauloCMarra/react-native-nitro-calendar-ui/issues)
+- [GitHub](https://github.com/JoaoPauloCMarra/react-native-calendar-ui)
+- [Issues](https://github.com/JoaoPauloCMarra/react-native-calendar-ui/issues)
 
 ---
 
