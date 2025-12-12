@@ -4,7 +4,7 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.3-blue.svg)](https://www.typescriptlang.org/)
 [![React Native](https://img.shields.io/badge/React%20Native-0.74+-green.svg)](https://reactnative.dev/)
-[![Test Coverage](https://img.shields.io/badge/coverage-75%25-brightgreen.svg)](https://github.com/JoaoPauloCMarra/react-native-nitro-calendar-ui)
+[![Test Coverage](https://img.shields.io/badge/coverage-75%25-brightgreen.svg)](https://github.com/JoaoPauloCMarra/react-native-calendar-ui)
 
 **High-performance headless calendar UI library for React Native**
 
@@ -834,7 +834,7 @@ Check out the [example app](./example) for:
 
 ## 🤝 Contributing
 
-Contributions are welcome! Please check out our [GitHub repository](https://github.com/JoaoPauloCMarra/react-native-nitro-calendar-ui).
+Contributions are welcome! Please check out our [GitHub repository](https://github.com/JoaoPauloCMarra/react-native-calendar-ui).
 
 ---
 
@@ -847,8 +847,8 @@ MIT
 ## 🔗 Links
 
 - [npm Package](https://www.npmjs.com/package/react-native-calendar-ui)
-- [GitHub Repository](https://github.com/JoaoPauloCMarra/react-native-nitro-calendar-ui)
-- [Issue Tracker](https://github.com/JoaoPauloCMarra/react-native-nitro-calendar-ui/issues)
+- [GitHub Repository](https://github.com/JoaoPauloCMarra/react-native-calendar-ui)
+- [Issue Tracker](https://github.com/JoaoPauloCMarra/react-native-calendar-ui/issues)
 
 ---
 
